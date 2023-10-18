@@ -8,6 +8,8 @@ import 'package:cbt_mobile_application/widgets/app_icon_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../services/local_auth_service.dart';
+
 class UpcomingExamCard extends StatelessWidget {
   const UpcomingExamCard({super.key, required this.model});
   final QuestionPaperModel model;
@@ -33,9 +35,14 @@ class UpcomingExamCard extends StatelessWidget {
         Column(
           children: [
             InkWell(
-              onTap: () {
-                QuestionPaperController.instance
-                    .navigateToQuestions(paper: model);
+              onTap: () async {
+                final auth = await LocalAuth.authenticate();
+                if (auth) {
+                  QuestionPaperController.instance
+                      .navigateToQuestions(paper: model);
+                } else {
+                  return;
+                }
               },
               child: Container(
                 width: double.infinity,
