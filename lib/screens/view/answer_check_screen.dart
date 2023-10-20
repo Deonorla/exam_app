@@ -1,4 +1,5 @@
 import 'package:cbt_mobile_application/configs/themes/custom_text_style.dart';
+import 'package:cbt_mobile_application/controllers/my_app_life_cycle_observer.dart';
 import 'package:cbt_mobile_application/controllers/question_paper/question_controller.dart';
 import 'package:cbt_mobile_application/screens/view/result_screen.dart';
 import 'package:cbt_mobile_application/widgets/common/custom_app_bar.dart';
@@ -7,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AnswerCheckScreen extends GetView<QuestionController> {
-  const AnswerCheckScreen({super.key});
+  final MyAppLifecycleObserver lifecycleObserver;
+  const AnswerCheckScreen({super.key, required this.lifecycleObserver});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
+        lifecycleObserver: lifecycleObserver,
         titleWidget: Obx(() => Text(
               'Q. ${(controller.questionIndex.value + 1).toString().padLeft(2, '0')}',
               style: AppBarTS,

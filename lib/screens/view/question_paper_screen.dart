@@ -27,9 +27,9 @@ class _QuestionScreenState extends State<QuestionScreen>
 
   @override
   void initState() {
-    super.initState();
     lifecycleObserver = MyAppLifecycleObserver(navigatorKey);
     WidgetsBinding.instance.addObserver(this);
+    super.initState();
   }
 
   @override
@@ -40,13 +40,15 @@ class _QuestionScreenState extends State<QuestionScreen>
 
   @override
   Widget build(BuildContext context) {
-    Get.put<QuestionController>(QuestionController());
+    Get.put<QuestionController>(
+        QuestionController(lifecycleObserver: lifecycleObserver));
     final controller = Get.find<QuestionController>();
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: CustomAppBar(
+              lifecycleObserver: lifecycleObserver,
               leading: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -149,11 +151,18 @@ class _QuestionScreenState extends State<QuestionScreen>
                               onTap: () async {
                                 final auth = await LocalAuth.authenticate();
                                 if (auth) {
-                                  controller.isLastQuestion
-                                      ? Get.to(() => const ExamOverviewScreen())
-                                      : controller.nextquestion();
-                                } else {
-                                  return;
+                                  if (lifecycleObserver.appInBackground) {
+                                    Get.to(() => ExamOverviewScreen(
+                                        lifecycleObserver: lifecycleObserver));
+                                  } else {
+                                    if (controller.isLastQuestion) {
+                                      Get.to(() => ExamOverviewScreen(
+                                          lifecycleObserver:
+                                              lifecycleObserver));
+                                    } else {
+                                      controller.nextquestion();
+                                    }
+                                  }
                                 }
                               },
                               title: controller.isLastQuestion

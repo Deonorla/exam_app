@@ -5,6 +5,8 @@ import 'package:cbt_mobile_application/widgets/app_circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/my_app_life_cycle_observer.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar(
       {super.key,
@@ -12,6 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.showActionIcon = false,
       this.leading,
       this.titleWidget,
+      required this.lifecycleObserver,
       this.onMenuActionTap});
 
   final String title;
@@ -19,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final bool showActionIcon;
   final VoidCallback? onMenuActionTap;
-
+  final MyAppLifecycleObserver lifecycleObserver;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,7 +59,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     child: AppCircleButton(
                       onTap: () {
                         onMenuActionTap ??
-                            Get.to(() => const ExamOverviewScreen());
+                            Get.to(() => ExamOverviewScreen(
+                                lifecycleObserver: lifecycleObserver));
                       },
                       child: const Icon(
                         Icons.menu,

@@ -1,3 +1,4 @@
+import 'package:cbt_mobile_application/controllers/my_app_life_cycle_observer.dart';
 import 'package:cbt_mobile_application/controllers/question_paper/question_controller.dart';
 import 'package:cbt_mobile_application/controllers/question_paper/question_controller_extension.dart';
 import 'package:cbt_mobile_application/screens/view/answer_check_screen.dart';
@@ -11,13 +12,19 @@ import '../../widgets/main_button.dart';
 import '../home/home_screen.dart';
 
 class ResultScreen extends GetView<QuestionController> {
-  const ResultScreen({super.key});
+  final MyAppLifecycleObserver lifecycleObserver;
+  const ResultScreen({super.key, required this.lifecycleObserver});
+
+  void _navigateToHomePage() {
+    Get.offAll(() => const HomeScreen());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
+          lifecycleObserver: lifecycleObserver,
           leading: const SizedBox(
             height: 80,
           ),
@@ -75,8 +82,10 @@ class ResultScreen extends GetView<QuestionController> {
                                 onTap: () {
                                   controller.jumpToQuestion(index,
                                       isGoBack: false);
-                                  Get.put(QuestionController());
-                                  Get.to(() => const AnswerCheckScreen());
+                                  Get.put(QuestionController(
+                                      lifecycleObserver: lifecycleObserver));
+                                  Get.to(() => AnswerCheckScreen(
+                                      lifecycleObserver: lifecycleObserver));
                                 });
                           }))
                 ],
@@ -86,18 +95,20 @@ class ResultScreen extends GetView<QuestionController> {
                 child: ColoredBox(
                   color: Colors.transparent,
                   child: Padding(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 10),
                     child: MainButton(
                       onTap: () {
-                        Get.offAll(()=> const HomeScreen());
+                        // Delay the navigation until the build is complete
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _navigateToHomePage();
+                        });
                       },
                       title: 'Go to homepage',
                     ),
                   ),
                 ),
               )
-
             ],
           ),
         ));

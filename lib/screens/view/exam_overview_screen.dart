@@ -7,13 +7,27 @@ import 'package:cbt_mobile_application/widgets/questions/question_number_card.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/my_app_life_cycle_observer.dart';
+
 class ExamOverviewScreen extends GetView<QuestionController> {
-  const ExamOverviewScreen({super.key});
+  final MyAppLifecycleObserver lifecycleObserver;
+  const ExamOverviewScreen({required this.lifecycleObserver, Key? key})
+      : super(key: key);
+
+  void _submitExam() {
+    controller.submit();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (lifecycleObserver.appInBackground) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _submitExam();
+      });
+    }
     return Scaffold(
       appBar: CustomAppBar(
+        lifecycleObserver: lifecycleObserver,
         title: controller.completedTest,
       ),
       body: Padding(

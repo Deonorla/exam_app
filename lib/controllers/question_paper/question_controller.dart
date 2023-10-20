@@ -1,9 +1,8 @@
 import 'dart:async';
-
+import 'package:cbt_mobile_application/controllers/my_app_life_cycle_observer.dart';
 import 'package:cbt_mobile_application/firebase_ref/loading_status.dart';
 import 'package:cbt_mobile_application/firebase_ref/references.dart';
 import 'package:cbt_mobile_application/models/question_paper_model.dart';
-import 'package:cbt_mobile_application/screens/home/home_screen.dart';
 import 'package:cbt_mobile_application/screens/view/result_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +12,7 @@ class QuestionController extends GetxController {
   final loadingStatus = LoadingStatus.loading.obs;
   late QuestionPaperModel questionPaperModel;
   final allQuestions = <Questions>[];
+  late MyAppLifecycleObserver lifecycleObserver;
 
   final questionIndex = 0.obs;
 
@@ -21,11 +21,14 @@ class QuestionController extends GetxController {
 
   Rxn<Questions> currentQuestion = Rxn<Questions>();
 
-  // Timerr
+  // Timer
   Timer? _timer;
 
   int remainSeconds = 1;
-  final time = '00.00'.obs;
+  final time = '00:00'.obs;
+
+  QuestionController(
+      {required this.lifecycleObserver}); // Constructor with lifecycleObserver parameter
 
   @override
   void onReady() {
@@ -120,7 +123,7 @@ class QuestionController extends GetxController {
     }
   }
 
-  _startTimer(int seconds) {
+  void _startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainSeconds = seconds;
     _timer = Timer.periodic(duration, (Timer timer) {
@@ -130,8 +133,7 @@ class QuestionController extends GetxController {
         int minutes = remainSeconds ~/ 60;
         int seconds = remainSeconds % 60;
         time.value =
-            minutes.toString().padLeft(2, '0') + ":" + seconds.toString()
-              ..padLeft(2, '0');
+            '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
         remainSeconds--;
       }
     });
@@ -139,6 +141,8 @@ class QuestionController extends GetxController {
 
   void submit() {
     _timer!.cancel();
-    Get.to(() => const ResultScreen());
+    Get.to(() => ResultScreen(
+          lifecycleObserver: lifecycleObserver,
+        ));
   }
 }
