@@ -28,7 +28,7 @@ class ResultScreen extends GetView<QuestionController> {
           leading: const SizedBox(
             height: 80,
           ),
-          title: controller.correctAnsweredQuestions,
+          title: "Success",
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -46,48 +46,49 @@ class ResultScreen extends GetView<QuestionController> {
                     height: 25,
                   ),
                   const Text(
-                    "Tap below question numbers to view correct answers",
+                    "Examination submitted",
                     textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
                     height: 25,
                   ),
-                  Expanded(
-                      child: GridView.builder(
-                          itemCount: controller.allQuestions.length,
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: Get.width ~/ 75,
-                            childAspectRatio: 1,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                          ),
-                          itemBuilder: (_, index) {
-                            final _question = controller.allQuestions[index];
-                            AnswerStatus _status = AnswerStatus.notanswered;
-                            final _selectedAnswer = _question.selectedAnswer;
-                            final _correctAnswer = _question.correctAnswer;
-                            if (_selectedAnswer == _correctAnswer) {
-                              _status = AnswerStatus.correct;
-                            } else if (_question.selectedAnswer == null) {
-                              _status = AnswerStatus.wrong;
-                            } else {
-                              _status = AnswerStatus.wrong;
-                            }
-                            return QuestionNumberCard(
-                                index: index,
-                                status: _status,
-                                onTap: () {
-                                  controller.jumpToQuestion(index,
-                                      isGoBack: false);
-                                  Get.put(QuestionController(
-                                      lifecycleObserver: lifecycleObserver));
-                                  Get.to(() => AnswerCheckScreen(
-                                      lifecycleObserver: lifecycleObserver));
-                                });
-                          }))
+                  // Expanded(
+                  //     child: GridView.builder(
+                  //         itemCount: controller.allQuestions.length,
+                  //         shrinkWrap: true,
+                  //         physics: const BouncingScrollPhysics(),
+                  //         gridDelegate:
+                  //             SliverGridDelegateWithFixedCrossAxisCount(
+                  //           crossAxisCount: Get.width ~/ 75,
+                  //           childAspectRatio: 1,
+                  //           crossAxisSpacing: 8,
+                  //           mainAxisSpacing: 8,
+                  //         ),
+                  //         itemBuilder: (_, index) {
+                  //           final _question = controller.allQuestions[index];
+                  //           AnswerStatus _status = AnswerStatus.notanswered;
+                  //           final _selectedAnswer = _question.selectedAnswer;
+                  //           final _correctAnswer = _question.correctAnswer;
+                  //           if (_selectedAnswer == _correctAnswer) {
+                  //             _status = AnswerStatus.correct;
+                  //           } else if (_question.selectedAnswer == null) {
+                  //             _status = AnswerStatus.wrong;
+                  //           } else {
+                  //             _status = AnswerStatus.wrong;
+                  //           }
+                  //           return QuestionNumberCard(
+                  //               index: index,
+                  //               status: _status,
+                  //               onTap: () {
+                  //                 controller.jumpToQuestion(index,
+                  //                     isGoBack: false);
+                  //                 Get.put(QuestionController(
+                  //                     lifecycleObserver: lifecycleObserver));
+                  //                 Get.to(() => AnswerCheckScreen(
+                  //                     lifecycleObserver: lifecycleObserver));
+                  //               });
+                  //         }))
                 ],
               ))),
               Container(

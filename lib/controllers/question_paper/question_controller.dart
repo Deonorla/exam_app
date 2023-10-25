@@ -40,6 +40,7 @@ class QuestionController extends GetxController {
 
   Future<void> loadData(QuestionPaperModel questionPaper) async {
     questionPaperModel = questionPaper;
+    print("count: ${questionPaper.questions!.length} ");
     loadingStatus.value = LoadingStatus.loading;
     try {
       final QuerySnapshot<Map<String, dynamic>> questionQuery =

@@ -13,11 +13,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(QuestionPaperController());
     QuestionPaperController _questionPaperController = Get.find();
+    var totalExam = _questionPaperController.allPapers.length;
     return Obx(() => SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ProgressCard(),
+              ProgressCard(
+                examCount: totalExam,
+              ),
               const SizedBox(
                 height: 20,
               ),
