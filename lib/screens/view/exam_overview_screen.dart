@@ -6,7 +6,7 @@ import 'package:cbt_mobile_application/widgets/questions/countdown_timer.dart';
 import 'package:cbt_mobile_application/widgets/questions/question_number_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:cbt_mobile_application/controllers/question_paper/question_controller_extension.dart';
 import '../../controllers/my_app_life_cycle_observer.dart';
 
 class ExamOverviewScreen extends GetView<QuestionController> {
@@ -92,6 +92,7 @@ class ExamOverviewScreen extends GetView<QuestionController> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                   child: MainButton(
                     onTap: () {
+                      controller.saveResult();
                       controller.submit();
                     },
                     title: 'Submit',

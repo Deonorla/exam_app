@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:cbt_mobile_application/controllers/auth/auth_controller.dart';
 import 'package:cbt_mobile_application/controllers/my_app_life_cycle_observer.dart';
 import 'package:cbt_mobile_application/firebase_ref/loading_status.dart';
 import 'package:cbt_mobile_application/firebase_ref/references.dart';
 import 'package:cbt_mobile_application/models/question_paper_model.dart';
 import 'package:cbt_mobile_application/screens/view/result_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -146,4 +148,10 @@ class QuestionController extends GetxController {
           lifecycleObserver: lifecycleObserver,
         ));
   }
+
+  // void navigateToHome() {
+  //   _timer!.cancel();
+  //   Get.offNamedUntil(()=> )
+
+  // }
 }

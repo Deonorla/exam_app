@@ -78,6 +78,11 @@ class AuthController extends GetxController {
       await _auth.signOut().whenComplete(() => Toast.show(Get.context,
           "Logged out Successfull", "Logged Out", ContentType.success));
 
+  User? getUser() {
+    firebaseUser.value = _auth.currentUser;
+    return firebaseUser.value;
+  }
+
   // late FirebaseAuth _auth;
   // final _user = Rxn<User>();
   // late Stream<User?> _authStateChanges;

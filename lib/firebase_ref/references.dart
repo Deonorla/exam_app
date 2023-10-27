@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 final userRf = fireStore.collection("users");
+final resultRf = fireStore.collection("results");
 // once invoked it creates a collection named questionPaper in the firebase backend
 final fireStore = FirebaseFirestore.instance;
 final questionPaperRF = fireStore.collection('questionPapers');

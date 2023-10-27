@@ -47,13 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     icon: Icon(CupertinoIcons.home),
                     label: ""),
-                // NavigationDestination(
-                //     selectedIcon: Icon(
-                //       CupertinoIcons.square_stack_3d_up_fill,
-                //       color: Colors.black,
-                //     ),
-                //     icon: Icon(CupertinoIcons.square_stack_3d_up),
-                //     label: ""),
                 NavigationDestination(
                     selectedIcon: Icon(
                       CupertinoIcons.person_alt,

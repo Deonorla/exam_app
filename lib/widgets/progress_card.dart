@@ -58,7 +58,7 @@ class ProgressCard extends StatelessWidget {
               child: CircularPercentIndicator(
                 radius: 50,
                 lineWidth: 3,
-                percent: .90,
+                percent: .10,
                 center: const Text(
                   '0%',
                   style: TextStyle(color: whiteColor),
