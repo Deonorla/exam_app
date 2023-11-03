@@ -4,6 +4,7 @@ import 'package:cbt_mobile_application/controllers/my_app_life_cycle_observer.da
 import 'package:cbt_mobile_application/firebase_ref/loading_status.dart';
 import 'package:cbt_mobile_application/firebase_ref/references.dart';
 import 'package:cbt_mobile_application/models/question_paper_model.dart';
+import 'package:cbt_mobile_application/screens/view/exam_overview_screen.dart';
 import 'package:cbt_mobile_application/screens/view/result_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -132,6 +133,7 @@ class QuestionController extends GetxController {
     _timer = Timer.periodic(duration, (Timer timer) {
       if (remainSeconds == 0) {
         timer.cancel();
+        submit();
       } else {
         int minutes = remainSeconds ~/ 60;
         int seconds = remainSeconds % 60;

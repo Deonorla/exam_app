@@ -1,4 +1,5 @@
 import 'package:cbt_mobile_application/controllers/question_paper/question_controller.dart';
+import 'package:cbt_mobile_application/services/local_auth_service.dart';
 import 'package:cbt_mobile_application/widgets/common/custom_app_bar.dart';
 import 'package:cbt_mobile_application/widgets/main_button.dart';
 import 'package:cbt_mobile_application/widgets/questions/answer_card.dart';
@@ -77,7 +78,14 @@ class ExamOverviewScreen extends GetView<QuestionController> {
                               return QuestionNumberCard(
                                 index: index + 1,
                                 status: _answerStatus,
-                                onTap: () => controller.jumpToQuestion(index),
+                                onTap: () async {
+                                  final auth = await LocalAuth.authenticate();
+                                  if (auth) {
+                                    controller.jumpToQuestion(index);
+                                  } else {
+                                    return;
+                                  }
+                                },
                               );
                             }),
                       ),
