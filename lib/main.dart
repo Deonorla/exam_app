@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cbt_mobile_application/bindings/initial_bindings.dart';
 import 'package:cbt_mobile_application/controllers/auth/auth_controller.dart';
 import 'package:cbt_mobile_application/screens/home/Home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:get/get.dart';
 
 import 'controllers/my_app_life_cycle_observer.dart';
@@ -23,6 +26,12 @@ void main() async {
   InitialBindings().dependencies();
 
   runApp(MyApp(lifecycleObserver: lifecycleObserver));
+
+  WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    if (Platform.isAndroid) {
+      await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+    }
+  });
 }
 
 class MyApp extends StatelessWidget {

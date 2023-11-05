@@ -21,6 +21,7 @@ class Home extends StatelessWidget {
               ProgressCard(
                 examCount: totalExam,
               ),
+
               const SizedBox(
                 height: 20,
               ),
