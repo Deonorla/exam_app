@@ -3,6 +3,8 @@ import 'package:cbt_mobile_application/controllers/auth/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/auth/auth_controller.dart';
+
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({
     super.key,
@@ -59,11 +61,16 @@ class LoginFormWidget extends StatelessWidget {
                         controller.email.text.trim(),
                         controller.password.text.trim());
                   },
-                  child: Text(
+                  child: Obx(
+                          () =>
+                  AuthController.instance.isLoading.value ? const CircularProgressIndicator() : Text(
                     "Login".toUpperCase(),
                     style: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.w600),
-                  )),
+                  ),
+
+                  ),
+              ),
             )
           ],
         ),

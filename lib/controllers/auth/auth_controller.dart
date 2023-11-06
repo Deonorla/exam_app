@@ -1,9 +1,11 @@
+
 import 'package:cbt_mobile_application/exceptions/signup_email_password_failure.dart';
 
 import 'package:cbt_mobile_application/screens/home/home_screen.dart';
 import 'package:cbt_mobile_application/screens/welcome_screen/welcome_screen.dart';
 import 'package:cbt_mobile_application/widgets/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
@@ -13,6 +15,7 @@ class AuthController extends GetxController {
   static AuthController get instance => Get.find();
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
+  final RxBool isLoading = false.obs;
 
   @override
   void onReady() {
@@ -29,6 +32,7 @@ class AuthController extends GetxController {
 
   void createUserWithEmailAndPassword(String email, String password) async {
     try {
+      isLoading.value = true;
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
@@ -38,13 +42,16 @@ class AuthController extends GetxController {
                   ContentType.success)
             }
           : Get.to(() => WelcomeScreen());
+      isLoading.value = false;
     } on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       Toast.show(Get.context, "An error occurred try signing in again", "Ooops",
           ContentType.failure);
       print('FIREBASE AUTH EXCEPTION = ${ex.message}');
       throw ex;
     } catch (e) {
+      isLoading.value = false;
       const ex = SignUpWithEmailAndPasswordFailure();
       print(' EXCEPTION = ${ex.message}');
       throw ex;
@@ -52,7 +59,9 @@ class AuthController extends GetxController {
   }
 
   void loginWithEmailAndPassword(String email, String password) async {
+
     try {
+      isLoading.value = true;
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) => Toast.show(
@@ -60,7 +69,9 @@ class AuthController extends GetxController {
               "You are successfully logged In",
               "Welcome Back",
               ContentType.success));
+      isLoading.value = false;
     } on FirebaseAuthException catch (e) {
+      isLoading.value = false;
       if (e.code == 'user-not-found') {
         Toast.show(Get.context, "User not found try signing up", "Ooops",
             ContentType.failure);
@@ -70,8 +81,10 @@ class AuthController extends GetxController {
         ;
       }
     } catch (e) {
+      isLoading.value = false;
       print(e);
     }
+      // Navigator.of(context).pop();
   }
 
   Future<void> logout() async =>
