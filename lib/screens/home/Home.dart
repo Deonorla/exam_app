@@ -1,6 +1,7 @@
 import 'package:cbt_mobile_application/constants/colors.dart';
 import 'package:cbt_mobile_application/widgets/progress_card.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/question_paper/question_paper_controller.dart';
@@ -39,10 +40,18 @@ class Home extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Column(
-                  children: _questionPaperController.allPapers
-                      .map((items) => UpcomingExamCard(model: items))
-                      .toList()),
+
+                    _questionPaperController.allPapers.isNotEmpty ?
+                    Column(
+                        children: _questionPaperController.allPapers
+                            .map((items) => UpcomingExamCard(model: items))
+                            .toList()) :
+
+                        const Center(
+                          child:  CircularProgressIndicator(),
+                        )
+
+
             ],
           ),
         ));

@@ -2,6 +2,7 @@ import 'package:cbt_mobile_application/constants/colors.dart';
 import 'package:cbt_mobile_application/controllers/auth/auth_controller.dart';
 import 'package:cbt_mobile_application/controllers/profileController.dart';
 import 'package:cbt_mobile_application/models/user_model.dart';
+import 'package:cbt_mobile_application/screens/profile/widget/user_profile_picture.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,9 @@ class Profile extends StatelessWidget {
                       height: 20,
                     ),
                     Column(children: [
-                      Image.asset('assets/images/splash_images/avatar2.png'),
+                    UserProfilePicture(
+                      name: userData!.fullName,
+                  ),
                       const SizedBox(
                         height: 20,
                       ),

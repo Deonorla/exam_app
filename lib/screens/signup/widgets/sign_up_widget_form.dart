@@ -1,4 +1,5 @@
 import 'package:cbt_mobile_application/constants/colors.dart';
+import 'package:cbt_mobile_application/controllers/auth/auth_controller.dart';
 import 'package:cbt_mobile_application/controllers/auth/signup_controller.dart';
 import 'package:cbt_mobile_application/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -116,11 +117,14 @@ class SignUpWidgetForm extends StatelessWidget {
                             controller.password.text.trim());
                       }
                     },
-                    child: Text(
-                      "Sign up".toUpperCase(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w900, fontSize: 18),
-                    )),
+                    child: Obx(
+                        () => AuthController.instance.isLoading.value ? const CircularProgressIndicator() : Text(
+                          "Sign up".toUpperCase(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 18),
+                        ),
+
+                    ), ),
               )
             ],
           )),
