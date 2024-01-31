@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "90915404796",
+    "project_id": "cbt-mobile-application",
+    "storage_bucket": "cbt-mobile-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90915404796:android:8101c18094344de38d5079",
+        "android_client_info": {
+          "package_name": "com.example.cbt_mobile_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90915404796-2uc2jcdhj25p253aclndfegao0cj7enc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwP5KrGi842NsaPWFgugYe4xnIBejHGIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90915404796-2uc2jcdhj25p253aclndfegao0cj7enc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "90915404796-12idg1dteu9trj34o4lio688mg24i5n5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cbtMobileApplication.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90915404796:android:a330be3bd64568578d5079",
+        "android_client_info": {
+          "package_name": "com.example.exam_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90915404796-2uc2jcdhj25p253aclndfegao0cj7enc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwP5KrGi842NsaPWFgugYe4xnIBejHGIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90915404796-2uc2jcdhj25p253aclndfegao0cj7enc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "90915404796-12idg1dteu9trj34o4lio688mg24i5n5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cbtMobileApplication.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

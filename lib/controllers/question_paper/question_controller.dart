@@ -55,7 +55,13 @@ class QuestionController extends GetxController {
           .map((snapshot) => Questions.fromSnapshot(snapshot))
           .toList();
 
-      questionPaper.questions = questions;
+      // Shuffle the questions to get a random order
+      questions.shuffle();
+
+      // Only keep the first n questions if needed (adjust n according to your requirement)
+      final randomQuestions = questions.take(7).toList();
+
+      questionPaper.questions = randomQuestions;
       for (Questions _question in questionPaper.questions!) {
         final QuerySnapshot<Map<String, dynamic>> answersQuery =
             await questionPaperRF

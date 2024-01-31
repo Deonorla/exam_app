@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cbt_mobile_application/constants/colors.dart';
 import 'package:cbt_mobile_application/controllers/question_paper/question_paper_controller.dart';
 import 'package:cbt_mobile_application/models/question_paper_model.dart';
 import 'package:cbt_mobile_application/widgets/app_icon_text.dart';
@@ -67,7 +66,7 @@ class UpcomingExamCard extends StatelessWidget {
                             child: const Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  "20 June, 2013",
+                                  "10 Febuary, 2024",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 12,

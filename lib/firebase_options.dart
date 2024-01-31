@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCwP5KrGi842NsaPWFgugYe4xnIBejHGIU',
-    appId: '1:90915404796:android:8101c18094344de38d5079',
+    appId: '1:90915404796:android:a330be3bd64568578d5079',
     messagingSenderId: '90915404796',
     projectId: 'cbt-mobile-application',
     storageBucket: 'cbt-mobile-application.appspot.com',
@@ -63,21 +63,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAs9u31MJc-AIjNgdZ9Yyi6NAA82_TiPxk',
-    appId: '1:90915404796:ios:4e54a821097982cd8d5079',
+    appId: '1:90915404796:ios:b1d21f6a477349dc8d5079',
     messagingSenderId: '90915404796',
     projectId: 'cbt-mobile-application',
     storageBucket: 'cbt-mobile-application.appspot.com',
-    iosClientId: '90915404796-70aiv8qhn3c6ptkurvabp1aak3hs551r.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cbtMobileApplication',
+    iosClientId: '90915404796-a8n6ioo0eggsqt4qjgagat4qrofqm47d.apps.googleusercontent.com',
+    iosBundleId: 'com.testing.cbtMobileApplication',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAs9u31MJc-AIjNgdZ9Yyi6NAA82_TiPxk',
-    appId: '1:90915404796:ios:1ebe3ed7f3235dd28d5079',
+    appId: '1:90915404796:ios:b36abc7cba1603b08d5079',
     messagingSenderId: '90915404796',
     projectId: 'cbt-mobile-application',
     storageBucket: 'cbt-mobile-application.appspot.com',
-    iosClientId: '90915404796-12idg1dteu9trj34o4lio688mg24i5n5.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cbtMobileApplication.RunnerTests',
+    iosClientId: '90915404796-v9ju16o2qdhqam838h6cb2mv7ak05qku.apps.googleusercontent.com',
+    iosBundleId: 'com.example.examApp.RunnerTests',
   );
 }

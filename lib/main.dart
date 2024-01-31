@@ -7,7 +7,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:get/get.dart';
-
+import 'package:http/http.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'controllers/my_app_life_cycle_observer.dart';
 import 'controllers/theme_controller.dart';
 import 'firebase_options.dart';
