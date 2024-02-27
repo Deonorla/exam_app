@@ -1,4 +1,4 @@
-# exam_app
+# CBT Mobile App
 
 A new Flutter project.
 
